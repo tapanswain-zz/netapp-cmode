@@ -1,0 +1,11 @@
+#!/usr/bin/ansible-playbook
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Create volume on cmode
+      uri:
+        url: "{{ url }}?cluster={{ cluster }}&vserver={{ vserver }}&aggregate={{ aggregate }}&name={{ volume_name }}&size={{ size }}"
+        method: POST
+        status_code: 201
+        HEADER_Content-Type: "application/json"
+      #with_items: volume_name
